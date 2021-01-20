@@ -4,7 +4,9 @@ const KEY = "&api-key=gp9ZIIUpPzaatGjPYFCTwNtzwrpAOyAB";
 
 // Export an object with a "search" method that searches the Giphy API for the passed query
 export default {
-  getArticle: function (q_one, q_two) {
-    return axios.get(BASEURL + q_one + "&begin_date-" + q_two + KEY);
+  getArticle: function (q_one) {
+     var search = axios.get(BASEURL + q_one + KEY);
+     console.log(search)
+     return search
   }
 };
