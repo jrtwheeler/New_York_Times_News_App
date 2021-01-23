@@ -6,10 +6,9 @@ function Table(props) {
     <table className="table table-striped">
       <thead>
         <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Email</th>
-          <th scope="col">Phone</th>
-          <th scope="col">Date of Birth</th>
+          <th scope="col">Source</th>
+          <th scope="col">Abstract</th>
+          <th scope="col">Link</th>
         </tr>
       </thead>
       {props.results.map(result => (
@@ -17,8 +16,7 @@ function Table(props) {
           <tr>
             <td>{result.source}</td>
             <td>{result.abstract}</td>
-            <td><a href="result.web_url">{result.abstract}</a></td>
-            <td></td>
+            <td><a href={result.web_url} target="_blank">{result.headline.main}</a></td>
           </tr>
         </tbody>
       ))}

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Row from "../Row";
 import Col from "../Col";
 import Table from "../Table";
-import Form from "../Form";
+import SearchForm from "../SearchForm";
 import Container from "../Container";
 import API from "../../utils/API";
 
@@ -10,20 +10,32 @@ class DataBaseContainer extends Component {
   state = {
     search: "",
     error: "",
-    results: []
+    results: [],
   };
-
 
   // When the component mounts, get a list of twenty five randomly generated employees update this.state.results
   componentDidMount() {
-    API.getArticle("Batman")
-      .then(res => this.setState({ results: res.data.response.docs }))
-      .catch(err => console.log(err));
+    this.startArchive()
   }
+
+  searchArchive = (query) => {
+    console.log(query)
+    API.getArticle(query)
+      .then((res) => this.setState({ results: res.data.response.docs }))
+      .catch((err) => console.log(err));
+  };
+
+  startArchive = () => {
+    API.startArticle()
+      .then((res) => this.setState({ results: res.data.response.docs }))
+      .catch((err) => console.log(err));
+  };
 
   handleInputChange = event => {
     const value = event.target.value;
     const name = event.target.name;
+    console.log(event.target)
+    console.log(value)
     this.setState({
       [name]: value
     });
@@ -31,15 +43,16 @@ class DataBaseContainer extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    alert("Working");
+    this.searchArchive(this.state.search);
   };
 
   render() {
+    console.log(this.state.search)
     return (
       <Container>
         <Row>
-            <Form
-              value={this.state.search}
+            <SearchForm
+              search={this.state.search}
               handleInputChange={this.handleInputChange}
               handleFormSubmit={this.handleFormSubmit}
             />
