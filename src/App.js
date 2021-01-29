@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import Directory from "./components/Directory";
 import Wrapper from "./components/Wrapper";
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -19,6 +20,7 @@ function App() {
       <div>
       <Directory/>
       </div>
+      <Footer/>
     </Router>
     </Wrapper>
   );
